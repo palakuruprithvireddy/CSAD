@@ -1,0 +1,156 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Map with Pin</title>
+  
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+    .custom-pin {
+      background-color: red;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .popup-content {
+      text-align: center;
+    }
+    .popup-content img {
+      width: 100px;
+      height: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Access token (replace with your own Mapbox token)
+    mapboxgl.accessToken = 'pk.eyJ1IjoicHJlZGR5MTAiLCJhIjoiY202OWxsdDkwMGZwejJqbjMwazRuM3hidCJ9.6nJlFGUDjamT2zooyNfjvg';
+
+    // Initialize the world map
+    const map = new mapboxgl.Map({
+      container: 'map', // ID of the map container
+      style: 'mapbox://styles/mapbox/streets-v11', // World map style
+      center: [20.0, 10.0], // Longitude, Latitude to center Africa
+      zoom: 2 // World zoom level
+    });
+
+    // Add zoom and rotation controls to the map
+    map.addControl(new mapboxgl.NavigationControl());
+
+    // Create a pin for Africa
+    const pin = document.createElement('div');
+    pin.className = 'custom-pin';
+
+    // Add the marker to Africa's location
+    new mapboxgl.Marker(pin)
+      .setLngLat([20.0, 10.0]) // Longitude and Latitude for Africa
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // Add a popup
+          .setHTML(`
+            <div class="popup-content">
+              <h3>Welcome to Africa</h3>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Suzanne_Malveaux.jpg" alt="Image of Africa">
+              <p>This is a beautiful continent!</p>
+            </div>
+          `)
+      )
+      .addTo(map);
+  </script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>World Map with Pin</title>
+   <!-- Load Mapbox GL JS and CSS -->
+   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+   <style>
+     body {
+       margin: 0;
+       padding: 0;
+     }
+     #map {
+       width: 100%;
+       height: 100vh;
+     }
+     .popup-content {
+       text-align: center;
+     }
+     .popup-content img {
+       width: 100px;
+       height: auto;
+       border-radius: 5px;
+     }
+   </style>
+ </head>
+ <body>
+   <div id="map"></div>
+   <script>
+     // Access token (replace with your own Mapbox token)
+     mapboxgl.accessToken = 'pk.eyJ1IjoicHJlZGR5MTAiLCJhIjoiY202OWxsdDkwMGZwejJqbjMwazRuM3hidCJ9.6nJlFGUDjamT2zooyNfjvg';
+
+
+     // Initialize the world map
+     const map = new mapboxgl.Map({
+       container: 'map', // ID of the map container
+       style: 'mapbox://styles/mapbox/streets-v11', // World map style
+       center: [20.0, 10.0], // Longitude, Latitude to center Africa
+       zoom: 2 // World zoom level
+     });
+ 
+     // Add zoom and rotation controls to the map
+     map.addControl(new mapboxgl.NavigationControl());
+ 
+     // Create a custom location pin icon URL
+     const pinUrl = 'https://static.vecteezy.com/system/resources/thumbnails/048/845/172/small_2x/red-location-pin-icon-for-map-navigation-and-gps-marker-png.png'; // Location pin icon URL
+ 
+     // Add the marker to Africa with the location pin
+     new mapboxgl.Marker({
+       element: createPinElement(pinUrl) // Create a custom pin using the location pin icon
+     })
+       .setLngLat([20.0, 10.0]) // Longitude and Latitude for Africa
+       .setPopup(
+         new mapboxgl.Popup({ offset: 25 }) // Add a popup
+           .setHTML(`
+             <div class="popup-content">
+               <h3>Pioneer 1</h3>
+               <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Suzanne_Malveaux.jpg" alt="Image of Africa">
+               <p>contents</p>
+             </div>
+           `)
+       )
+       .addTo(map);
+ 
+     // Function to create a custom pin element with an image
+     function createPinElement(pinUrl) {
+       const pinElement = document.createElement('div');
+       pinElement.style.backgroundImage = `url(${pinUrl})`;
+       pinElement.style.backgroundSize = 'contain';
+       pinElement.style.width = '50px'; // Size of the pin
+       pinElement.style.height = '50px'; // Size of the pin
+       pinElement.style.transform = 'translate(-50%, -50%)'; // Center the pin
+       return pinElement;
+     }
+   </script>
+ </body>
+ </html>
+ 
